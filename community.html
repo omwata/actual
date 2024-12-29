@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="Tigs-Kenya Logo">
+        <span class="site-title">Tigs-Kenya</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="smart-tech.html">Smart Technology</a></li>
+            <li><a href="jobs.html">Job Listing</a></li>
+            <li><a href="community.html">Community Engagement</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <div class="container">
+
+        <div id="community" class="tab-content">
+            <h2>Community Engagement</h2>
+            <p>Join our community and get involved in meaningful discussions. Share your experiences, comments, or tell us how we helped you secure your dream job!</p>
+
+            <!-- Chat Interface -->
+            <div class="chat-container">
+                <div class="chat-box" id="chat-box">
+                    <!-- Chat messages will appear here -->
+                </div>
+                <textarea id="chat-input" placeholder="Share your experience..." rows="3"></textarea>
+                <button id="send-btn">Send</button>
+            </div>
+        </div>       
+    </div>
+
+    <script>
+        // JavaScript for Tab Navigation
+        const tabs = document.querySelectorAll('.tab-link');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function(event) {
+                event.preventDefault();
+                tabs.forEach(tab => tab.classList.remove('active'));
+                contents.forEach(content => content.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelector(tab.getAttribute('href')).classList.add('active');
+            });
+        });
+
+        // JavaScript for sending and displaying chat messages
+        const chatBox = document.getElementById('chat-box');
+        const chatInput = document.getElementById('chat-input');
+        const sendBtn = document.getElementById('send-btn');
+
+        // Function to send a message
+        sendBtn.addEventListener('click', function() {
+            const message = chatInput.value.trim();
+            if (message !== "") {
+                displayMessage(message, 'user');
+                chatInput.value = '';  // Clear the input after sending
+                chatInput.focus();
+            }
+        });
+
+        // Function to display a message in the chat box
+        function displayMessage(message, sender) {
+            const messageContainer = document.createElement('div');
+            messageContainer.classList.add('chat-message');
+            messageContainer.classList.add(sender);
+            messageContainer.textContent = message;
+            chatBox.appendChild(messageContainer);
+            chatBox.scrollTop = chatBox.scrollHeight;  // Scroll to the bottom to show the latest message
+        }
+
+        // Optional: Auto-generate a response for the chat bot (for testing purposes)
+        setInterval(() => {
+            if (Math.random() > 0.7) { // Random chance for a response
+                displayMessage("Thanks for sharing! We are glad we could help you.", 'system');
+            }
+        }, 5000);
+    </script>
+</body>
+<footer>
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h1 class="logo-text">Tigs-Kenya</h1>
+            <p>
+                We connect talent, technology, and community to create opportunities for growth and innovation.
+            </p>
+            <div class="contact">
+                <span><i class="fas fa-phone"></i> &nbsp; +254787052271</span>
+                <span><i class="fas fa-envelope"></i> &nbsp; omwata05@gmail.com</span>
+</footer>
+</html>
